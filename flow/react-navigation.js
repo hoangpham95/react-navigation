@@ -407,9 +407,7 @@ declare module 'react-navigation' {
     NavigationSceneRendererProps & {
       mode: HeaderMode,
       router: NavigationRouter<NavigationState, NavigationStackScreenOptions>,
-      getScreenDetails: NavigationScene => NavigationScreenDetails<
-        NavigationStackScreenOptions
-      >,
+      getScreenDetails: NavigationScene => NavigationScreenDetails<NavigationStackScreenOptions>,
       leftInterpolator: (props: NavigationSceneRendererProps) => {},
       titleInterpolator: (props: NavigationSceneRendererProps) => {},
       rightInterpolator: (props: NavigationSceneRendererProps) => {},
@@ -660,9 +658,7 @@ declare module 'react-navigation' {
     onWillBlur?: NavigationEventCallback,
     onDidBlur?: NavigationEventCallback,
   };
-  declare export var NavigationEvents: React$ComponentType<
-    _NavigationEventsProps
-  >;
+  declare export var NavigationEvents: React$ComponentType<_NavigationEventsProps>;
 
   /**
    * Navigation container
@@ -1041,9 +1037,7 @@ declare module 'react-navigation' {
      */
     transitionConfig?: () => TransitionConfig,
   } & NavigationNavigatorProps<NavigationStackScreenOptions, NavigationState>;
-  declare export var CardStackTransitioner: React$ComponentType<
-    _CardStackTransitionerProps
-  >;
+  declare export var CardStackTransitioner: React$ComponentType<_CardStackTransitionerProps>;
 
   declare type _CardStackProps = {
     screenProps?: {},
@@ -1114,9 +1108,7 @@ declare module 'react-navigation' {
     truncatedTitle?: ?string,
     width?: ?number,
   };
-  declare export var HeaderBackButton: React$ComponentType<
-    _HeaderBackButtonProps
-  >;
+  declare export var HeaderBackButton: React$ComponentType<_HeaderBackButtonProps>;
 
   declare type _DrawerViewProps = {
     drawerLockMode?: 'unlocked' | 'locked-closed' | 'locked-open',
@@ -1203,12 +1195,13 @@ declare module 'react-navigation' {
       jumpToIndex: (index: number) => void,
     }) => void,
     renderIcon: (scene: TabScene) => React$Element<*>,
+    getButtonComponent: (scene: TabScene) => React$Element<*>,
     labelStyle?: TextStyleProp,
     iconStyle?: ViewStyleProp,
   };
   declare export var TabBarTop: React$ComponentType<_TabBarTopProps>;
 
-  declare type _TabBarBottomProps = {
+  declare type _BottomTabBarProps = {
     activeTintColor: string,
     activeBackgroundColor: string,
     adaptive?: boolean,
@@ -1231,13 +1224,14 @@ declare module 'react-navigation' {
     }) => void,
     getTestIDProps: (scene: TabScene) => (scene: TabScene) => any,
     renderIcon: (scene: TabScene) => React$Node,
+    getButtonComponent: (scene: TabScene) => React$Node,
     style?: ViewStyleProp,
     animateStyle?: ViewStyleProp,
     labelStyle?: TextStyleProp,
     tabStyle?: ViewStyleProp,
     showIcon?: boolean,
   };
-  declare export var TabBarBottom: React$ComponentType<_TabBarBottomProps>;
+  declare export var BottomTabBar: React$ComponentType<_BottomTabBarProps>;
 
   declare export function withNavigation<
     Props: {},
