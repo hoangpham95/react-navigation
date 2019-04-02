@@ -405,7 +405,7 @@ declare module 'react-navigation' {
     type: 'Navigation/TOGGLE_DRAWER';
   }
 
-  export interface SwipebackDelayConfig {
+  export interface SwipebackConfirmConfig {
     onContinue: () => void;
     onCancel: () => void;
   }
@@ -433,7 +433,7 @@ declare module 'react-navigation' {
       transitionProps: NavigationTransitionProps,
       prevTransitionProps?: NavigationTransitionProps
     ) => void;
-    onActionBeforeSwipeBack?: (action: SwipebackDelayConfig) => void;
+    onActionBeforeSwipeBack?: (config: SwipebackConfirmConfig) => void;
   }
 
   /**
