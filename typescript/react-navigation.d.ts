@@ -405,6 +405,11 @@ declare module 'react-navigation' {
     type: 'Navigation/TOGGLE_DRAWER';
   }
 
+  export interface SwipebackDelayConfig {
+    onContinue: () => void;
+    onCancel: () => void;
+  }
+
   export interface NavigationStackViewConfig {
     mode?: 'card' | 'modal';
     headerMode?: HeaderMode;
@@ -428,6 +433,7 @@ declare module 'react-navigation' {
       transitionProps: NavigationTransitionProps,
       prevTransitionProps?: NavigationTransitionProps
     ) => void;
+    onActionBeforeSwipeBack?: (action: SwipebackDelayConfig) => void;
   }
 
   /**
@@ -649,7 +655,9 @@ declare module 'react-navigation' {
     lastState: NavigationState | null | undefined;
   }
 
-  export type NavigationEventCallback = (payload: NavigationEventPayload) => void;
+  export type NavigationEventCallback = (
+    payload: NavigationEventPayload
+  ) => void;
 
   export interface NavigationEventSubscription {
     remove: () => void;
@@ -1183,7 +1191,9 @@ declare module 'react-navigation' {
     ): NavigationPopToTopAction;
 
     function push(options: NavigationPushActionPayload): NavigationPushAction;
-    function reset(options: NavigationResetActionPayload): NavigationResetAction;
+    function reset(
+      options: NavigationResetActionPayload
+    ): NavigationResetAction;
 
     function replace(
       options: NavigationReplaceActionPayload
