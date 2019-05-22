@@ -20,7 +20,9 @@ export type StackNavigatorConfig = {
 
 export default (
   routeConfigMap: NavigationRouteConfigMap,
-  stackConfig: StackNavigatorConfig = {}
+  stackConfig: StackNavigatorConfig = {
+    trackGestureVelocity: true,
+  }
 ) => {
   const {
     initialRouteName,
@@ -33,7 +35,8 @@ export default (
     onTransitionStart,
     onTransitionEnd,
     navigationOptions,
-    onActionBeforeSwipeBack
+    onActionBeforeSwipeBack,
+    trackGestureVelocity,
   } = stackConfig;
   const stackRouterConfig = {
     initialRouteName,
@@ -59,6 +62,7 @@ export default (
       onTransitionStart={onTransitionStart}
       onTransitionEnd={onTransitionEnd}
       onActionBeforeSwipeBack={onActionBeforeSwipeBack}
+      trackGestureVelocity={trackGestureVelocity === true}
     />
   ));
 

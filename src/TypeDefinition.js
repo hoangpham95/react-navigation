@@ -123,7 +123,9 @@ export type NavigationScreenOption<T> =
   ) => T);
 
 export type Style =
-  | { [key: string]: any }
+  | {
+      [key: string]: any,
+    }
   | number
   | false
   | null
@@ -220,7 +222,8 @@ export type NavigationStackViewConfig = {
   transitionConfig?: () => TransitionConfig,
   onTransitionStart?: () => void,
   onTransitionEnd?: () => void,
-  onActionBeforeSwipeBack?: (continueGoBack, cancelGoBack) => void,
+  onActionBeforeSwipeBack?: (onBack: Function, onCancel: Function) => void,
+  trackGestureVelocity?: boolean,
 };
 
 export type NavigationStackScreenOptions = NavigationScreenOptions & {
@@ -292,29 +295,33 @@ export type NavigationTabRouterConfig = {
 export type NavigationTabScreenOptions = NavigationScreenOptions & {
   tabBarIcon?:
     | React.Element<*>
-    | ((options: { tintColor: ?string, focused: boolean }) => ?React.Element<
-      *
-    >),
+    | ((options: {
+      tintColor: ?string,
+      focused: boolean,
+    }) => ?React.Element<*>),
   tabBarLabel?:
     | string
     | React.Element<*>
-    | ((options: { tintColor: ?string, focused: boolean }) => ?React.Element<
-      *
-    >),
+    | ((options: {
+      tintColor: ?string,
+      focused: boolean,
+    }) => ?React.Element<*>),
   tabBarVisible?: boolean,
 };
 
 export type NavigationDrawerScreenOptions = NavigationScreenOptions & {
   drawerIcon?:
     | React.Element<*>
-    | ((options: { tintColor: ?string, focused: boolean }) => ?React.Element<
-      *
-    >),
+    | ((options: {
+      tintColor: ?string,
+      focused: boolean,
+    }) => ?React.Element<*>),
   drawerLabel?:
     | React.Element<*>
-    | ((options: { tintColor: ?string, focused: boolean }) => ?React.Element<
-      *
-    >),
+    | ((options: {
+      tintColor: ?string,
+      focused: boolean,
+    }) => ?React.Element<*>),
 };
 
 export type NavigationRouteConfigMap = {

@@ -42,7 +42,7 @@ type Props = {
    * Optional custom animation when transitioning between screens.
    */
   transitionConfig?: () => TransitionConfig,
-  onActionBeforeSwipeBack?: (accept, decline) => void,
+  onActionBeforeSwipeBack?: (() => void, () => void) => void,
 };
 
 type DefaultProps = {
@@ -106,7 +106,7 @@ class CardStackTransitioner extends Component<DefaultProps, Props, void> {
       cardStyle,
       transitionConfig,
       style,
-      onActionBeforeSwipeBack
+      onActionBeforeSwipeBack,
     } = this.props;
     return (
       <CardStack

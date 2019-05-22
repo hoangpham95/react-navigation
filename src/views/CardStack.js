@@ -65,6 +65,8 @@ type Props = {
   scenes: Array<NavigationScene>,
   scene: NavigationScene,
   index: number,
+  onActionBeforeSwipeBack?: (onBack: Function, onCancel: Function) => void,
+  trackGestureVelocity?: boolean,
 };
 
 /**
@@ -225,17 +227,20 @@ class CardStack extends Component {
       const backFromScene = scenes.find((s: *) => s.index === toValue + 1);
       if (!this._isResponding && backFromScene) {
         navigation.dispatch(
-          NavigationActions.back({ key: backFromScene.route.key })
+          NavigationActions.back({
+            key: backFromScene.route.key,
+          })
         );
       }
     });
   }
 
-  _getCustomSwipeBackBehavior(index, duration) {
-    return this.props.onActionBeforeSwipeBack(
-      () => this._goBack(index, duration),
-      () => this._reset(index, duration)
-    );
+  _getCustomSwipeBackBehavior(index: number, duration: number) {
+    this.props.onActionBeforeSwipeBack &&
+      this.props.onActionBeforeSwipeBack(
+        () => this._goBack(index, duration),
+        () => this._reset(index, duration)
+      );
   }
 
   render(): React.Element<*> {
@@ -260,7 +265,12 @@ class CardStack extends Component {
         });
       },
       onMoveShouldSetPanResponder: (
-        event: { nativeEvent: { pageY: number, pageX: number } },
+        event: {
+          nativeEvent: {
+            pageY: number,
+            pageX: number,
+          },
+        },
         gesture: any
       ) => {
         if (index !== scene.index) {
@@ -339,17 +349,22 @@ class CardStack extends Component {
         position.stopAnimation((value: number) => {
           // If the speed of the gesture release is significant, use that as the indication
           // of intent
-          if (gestureVelocity < -0.5) {
-            this._reset(immediateIndex, resetDuration);
-            return;
-          }
-          if (gestureVelocity > 0.5) {
-            if (this.props.onActionBeforeSwipeBack) {
-              this._getCustomSwipeBackBehavior(immediateIndex, goBackDuration);
-            } else {
-              this._goBack(immediateIndex, goBackDuration);
+          if (this.props.trackGestureVelocity) {
+            if (gestureVelocity < -0.5) {
+              this._reset(immediateIndex, resetDuration);
+              return;
             }
-            return;
+            if (gestureVelocity > 0.5) {
+              if (this.props.onActionBeforeSwipeBack) {
+                this._getCustomSwipeBackBehavior(
+                  immediateIndex,
+                  goBackDuration
+                );
+              } else {
+                this._goBack(immediateIndex, goBackDuration);
+              }
+              return;
+            }
           }
 
           // Then filter based on the distance the screen was moved. Over a third of the way swiped,
@@ -377,9 +392,453 @@ class CardStack extends Component {
     return (
       <View {...handlers} style={styles.container}>
         <View style={styles.scenes}>
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
           {scenes.map((s: *) => this._renderCard(s))}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
         </View>
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
         {floatingHeader}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
       </View>
     );
   }
@@ -404,14 +863,175 @@ class CardStack extends Component {
     if (headerMode === 'screen') {
       return (
         <View style={styles.container}>
-          <View style={{ flex: 1 }}>
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
             <SceneView
               screenProps={screenProps}
               navigation={navigation}
               component={SceneComponent}
             />
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
+            {' '}
           </View>
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
           {this._renderHeader(scene, headerMode)}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
+          {' '}
         </View>
       );
     }
@@ -435,7 +1055,11 @@ class CardStack extends Component {
       isModal
     );
     const style =
-      screenInterpolator && screenInterpolator({ ...this.props, scene });
+      screenInterpolator &&
+      screenInterpolator({
+        ...this.props,
+        scene,
+      });
 
     const SceneComponent = this.props.router.getComponentForRouteName(
       scene.route.routeName
@@ -448,7 +1072,86 @@ class CardStack extends Component {
         style={[style, this.props.cardStyle]}
         scene={scene}
       >
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
         {this._renderInnerScene(SceneComponent, scene)}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
+        {' '}
       </Card>
     );
   };
