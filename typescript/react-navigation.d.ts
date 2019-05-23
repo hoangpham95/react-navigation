@@ -478,6 +478,7 @@ declare module 'react-navigation' {
     gesturesEnabled?: boolean;
     gestureResponseDistance?: { vertical?: number; horizontal?: number };
     gestureDirection?: 'default' | 'inverted';
+    trackGestureVelocityEnabled?: boolean;
   }
 
   export interface NavigationStackRouterConfig {
