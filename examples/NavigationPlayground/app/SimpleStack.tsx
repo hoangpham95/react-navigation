@@ -1,9 +1,10 @@
 // tslint:disable no-unused-expression
 
 import * as React from 'react';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import {
   createStackNavigator,
+  GesturePauseConfig,
   NavigationActions,
   NavigationEventPayload,
   NavigationEventSubscription,
@@ -242,7 +243,26 @@ const SimpleStack = createStackNavigator(
     },
   },
   {
-    // headerLayoutPreset: 'center',
+    navigationOptions: {
+      gesturesEnabled: true,
+    },
+    onPauseGesture: (config: GesturePauseConfig) => {
+      Alert.alert(
+        'Back?',
+        'Confirm going back',
+        [
+          {
+            text: 'Yes',
+            onPress: config.onContinueGesture,
+          },
+          {
+            text: 'No',
+            onPress: config.onCancelGesture,
+          },
+        ],
+        { cancelable: false }
+      );
+    },
   }
 );
 

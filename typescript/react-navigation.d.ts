@@ -428,6 +428,7 @@ declare module 'react-navigation' {
       transitionProps: NavigationTransitionProps,
       prevTransitionProps?: NavigationTransitionProps
     ) => void;
+    onPauseGesture?: (config: GesturePauseConfig) => void;
   }
 
   /**
@@ -470,9 +471,15 @@ declare module 'react-navigation' {
     headerBackground?: React.ReactNode | React.ReactType;
     headerBackgroundTransitionPreset?: 'toggle' | 'fade' | 'translate';
     gesturesEnabled?: boolean;
+    trackGesturesVelocity?: boolean;
     gestureResponseDistance?: { vertical?: number; horizontal?: number };
     gestureDirection?: 'default' | 'inverted';
   }
+
+  export type GesturePauseConfig = {
+    onCancelGesture: () => void;
+    onContinueGesture: () => void;
+  };
 
   export interface NavigationStackRouterConfig {
     headerTransitionPreset?: 'fade-in-place' | 'uikit';
@@ -649,7 +656,9 @@ declare module 'react-navigation' {
     lastState: NavigationState | null | undefined;
   }
 
-  export type NavigationEventCallback = (payload: NavigationEventPayload) => void;
+  export type NavigationEventCallback = (
+    payload: NavigationEventPayload
+  ) => void;
 
   export interface NavigationEventSubscription {
     remove: () => void;
@@ -1183,7 +1192,9 @@ declare module 'react-navigation' {
     ): NavigationPopToTopAction;
 
     function push(options: NavigationPushActionPayload): NavigationPushAction;
-    function reset(options: NavigationResetActionPayload): NavigationResetAction;
+    function reset(
+      options: NavigationResetActionPayload
+    ): NavigationResetAction;
 
     function replace(
       options: NavigationReplaceActionPayload
